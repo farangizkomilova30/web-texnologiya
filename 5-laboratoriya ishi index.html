@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kompyuter qurilmalari</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 30px;
+    }
+    .devices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      padding: 10px;
+      background: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      color: #003366;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card button {
+      margin-top: 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .card button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kompyuter qurilmalari</h1>
+
+  <div class="devices">
+    <!-- Klaviatura -->
+    <div class="card">
+      <img src="https://www.exegate.ru/images/catalog/115/ex298364.jpg" alt="Klaviatura">
+      <h2>Klaviatura</h2>
+      <p>Matn kiritish va kompyuter bilan muloqot qilish uchun ishlatiladigan qurilma.</p>
+      <button onclick="showInfo('klaviatura')">Batafsil</button>
+    </div>
+
+    <!-- Sichqoncha -->
+    <div class="card">
+      <img src="https://api.cabinet.smart-market.uz/uploads/images/ff8081810d9a85cc0e3e5ee6" alt="Sichqoncha">
+      <h2>Sichqoncha</h2>
+      <p>Ekrandagi kursorni boshqarish uchun qo‘lda ishlatiladigan qurilma.</p>
+      <button onclick="showInfo('sichqoncha')">Batafsil</button>
+    </div>
+
+    <!-- Monitor -->
+    <div class="card">
+      <img src="https://5.imimg.com/data5/SELLER/Default/2023/5/310007895/NN/FX/BX/189720420/hd-computer-monitor.jpg" alt="Monitor">
+      <h2>Monitor</h2>
+      <p>Kompyuterdagi ma’lumotlarni vizual tarzda ko‘rsatadigan qurilma.</p>
+      <button onclick="showInfo('monitor')">Batafsil</button>
+    </div>
+
+    <!-- RAM -->
+    <div class="card">
+      <img src="https://images.uzum.uz/cocldn72u18gghcoabh0/original.jpg" alt="RAM">
+      <h2>RAM (Operativ xotira)</h2>
+      <p>Ma’lumotlarni vaqtinchalik saqlash va tezkor ishlash uchun mo‘ljallangan xotira turi.</p>
+      <button onclick="showInfo('ram')">Batafsil</button>
+    </div>
+
+    <!-- HDD -->
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxm8d1PDT2N6H-UBpyIfDDnz89TBFGCT-Scg&s" alt="Qattiq disk">
+      <h2>Qattiq disk (HDD)</h2>
+      <p>Ma’lumotlarni uzoq muddat saqlash uchun ishlatiladigan mexanik qurilma.</p>
+      <button onclick="showInfo('hdd')">Batafsil</button>
+    </div>
+  </div>
+
+  <script>
+    const infoData = {
+      klaviatura: `
+        <h1>Klaviatura haqida</h1>
+        <p>Klaviatura — kompyuterga matn va buyruqlar kiritish uchun ishlatiladigan asosiy qurilma.</p>
+        <p>U harflar, raqamlar, belgi va funksional tugmalardan tashkil topgan.</p>
+      `,
+      sichqoncha: `
+        <h1>Sichqoncha haqida</h1>
+        <p>Sichqoncha — foydalanuvchining kursorni ekranda harakatlantirishiga imkon beruvchi qurilma.</p>
+        <p>Unda tugmalar va aylantirish g‘ildiragi mavjud bo‘ladi.</p>
+      `,
+      monitor: `
+        <h1>Monitor haqida</h1>
+        <p>Monitor — foydalanuvchiga vizual axborotni ko‘rsatib beruvchi ekranli qurilma.</p>
+        <p>U turli o‘lcham va texnologiyada bo‘ladi: LCD, LED va boshqalar.</p>
+      `,
+      ram: `
+        <h1>RAM haqida</h1>
+        <p>Operativ xotira (RAM) — vaqtinchalik ma’lumotlarni saqlash uchun mo‘ljallangan tezkor xotira.</p>
+        <p>Kompyuter ishlashi davomida foydalaniladi va elektr o‘chsa, ma’lumotlar o‘chadi.</p>
+      `,
+      hdd: `
+        <h1>Qattiq disk (HDD) haqida</h1>
+        <p>HDD — ma’lumotlarni uzoq muddat saqlovchi magnit diskli qurilma.</p>
+        <p>U odatda katta hajmli va arzon narxdagi saqlash yechimi hisoblanadi.</p>
+      `
+    };
+
+    function showInfo(key) {
+      const newWin = window.open('', '_blank', 'width=600,height=450,resizable=yes');
+      newWin.document.write(`
+        <!DOCTYPE html>
+        <html lang="uz">
+        <head>
+          <meta charset="UTF-8" />
+          <title>Ma'lumot</title>
+          <style>
+            body {
+              font-family: sans-serif;
+              padding: 20px;
+              background: #fff;
+              color: #333;
+              max-width: 600px;
+              margin: auto;
+            }
+            h1 {
+              color: #003366;
+            }
+            p {
+              font-size: 1.1rem;
+            }
+            button {
+              margin-top: 20px;
+              padding: 10px 16px;
+              background-color: #007bff;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            button:hover {
+              background-color: #0056b3;
+            }
+          </style>
+        </head>
+        <body>
+          ${infoData[key]}
+          <button onclick="window.close()">Yopish</button>
+        </body>
+        </html>
+      `);
+      newWin.document.close();
+    }
+  </script>
+
+</body>
+</html>
