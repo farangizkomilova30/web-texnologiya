@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kompyuter qurilmalari</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 30px;
+    }
+    .device-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0;
+      list-style: none;
+    }
+    .device-item {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    .device-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .device-image {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      background: #f9f9f9;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    .device-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 15px 0 8px;
+      color: #222;
+    }
+    .device-desc {
+      font-size: 0.95rem;
+      padding: 0 15px;
+      text-align: center;
+      color: #555;
+      flex-grow: 1;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      outline-offset: 2px;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .btn.animate {
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kompyuter qurilmalari</h1>
+
+  <ul class="device-list">
+    <li class="device-item">
+      <img class="device-image" src="https://www.exegate.ru/images/catalog/115/ex298364.jpg" alt="Klaviatura" />
+      <h2 class="device-name">Klaviatura</h2>
+      <p class="device-desc">Matn kiritish va kompyuter bilan muloqot qilish uchun ishlatiladigan qurilma.</p>
+      <button class="btn" onclick="openInfo('klaviatura', this)">Malumotga o'tish</button>
+    </li>
+    <li class="device-item">
+      <img class="device-image" src="https://api.cabinet.smart-market.uz/uploads/images/ff8081810d9a85cc0e3e5ee6" alt="Sichqoncha" />
+      <h2 class="device-name">Sichqoncha</h2>
+      <p class="device-desc">Ekrandagi kursorni boshqarish uchun qo‘lda ishlatiladigan qurilma.</p>
+      <button class="btn" onclick="openInfo('sichqoncha', this)">Malumotga o'tish</button>
+    </li>
+    <li class="device-item">
+      <img class="device-image" src="https://5.imimg.com/data5/SELLER/Default/2023/5/310007895/NN/FX/BX/189720420/hd-computer-monitor.jpg" alt="Monitor" />
+      <h2 class="device-name">Monitor</h2>
+      <p class="device-desc">Kompyuterdagi ma’lumotlarni vizual tarzda ko‘rsatadigan qurilma.</p>
+      <button class="btn" onclick="openInfo('monitor', this)">Malumotga o'tish</button>
+    </li>
+    <li class="device-item">
+      <img class="device-image" src="https://images.uzum.uz/cocldn72u18gghcoabh0/original.jpg" alt="RAM" />
+      <h2 class="device-name">RAM (Operativ xotira)</h2>
+      <p class="device-desc">Ma’lumotlarni vaqtinchalik saqlash va tezkor ishlash uchun mo‘ljallangan xotira turi.</p>
+      <button class="btn" onclick="openInfo('ram', this)">Malumotga o'tish</button>
+    </li>
+    <li class="device-item">
+      <img class="device-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxm8d1PDT2N6H-UBpyIfDDnz89TBFGCT-Scg&s" alt="Qattiq disk" />
+      <h2 class="device-name">Qattiq disk (HDD)</h2>
+      <p class="device-desc">Ma’lumotlarni uzoq muddat saqlash uchun ishlatiladigan mexanik qurilma.</p>
+      <button class="btn" onclick="openInfo('hdd', this)">Malumotga o'tish</button>
+    </li>
+  </ul>
+
+  <script>
+    const deviceDetails = {
+      klaviatura: `
+        <h1>Klaviatura haqida</h1>
+        <p>Klaviatura — kompyuterga matn va buyruqlar kiritish uchun ishlatiladigan asosiy qurilma.</p>
+        <p>U harflar, raqamlar va boshqa tugmalardan iborat bo‘lib, turli operatsion tizimlar uchun turli tartiblarda bo‘lishi mumkin.</p>
+      `,
+      sichqoncha: `
+        <h1>Sichqoncha haqida</h1>
+        <p>Sichqoncha — kompyuterdagi kursorni boshqarish uchun qo‘lda ishlatiladigan qurilma.</p>
+        <p>U odatda ikki yoki uch tugmali va aylanuvchi gildirak (scroll wheel)dan iborat.</p>
+      `,
+      monitor: `
+        <h1>Monitor haqida</h1>
+        <p>Monitor — kompyuter tomonidan chiqarilgan ma’lumotlarni vizual ko‘rsatadigan qurilma.</p>
+        <p>U turli o‘lcham va texnologiyalarda bo‘lib, ekran sifatiga qarab tasvir sifatini ta’minlaydi.</p>
+      `,
+      ram: `
+        <h1>RAM (Operativ xotira) haqida</h1>
+        <p>RAM — ma’lumotlarni vaqtinchalik saqlash va kompyuterning tezkor ishlashini ta’minlovchi xotira turi.</p>
+        <p>U o‘chirilganda ma’lumotlar yo‘qoladi, lekin tezkor kirish imkonini beradi.</p>
+      `,
+      hdd: `
+        <h1>Qattiq disk (HDD) haqida</h1>
+        <p>Qattiq disk — kompyuterda ma’lumotlarni uzoq muddatli saqlash uchun ishlatiladigan mexanik qurilma.</p>
+        <p>U katta hajmdagi fayllarni arzon narxda saqlash imkonini beradi.</p>
+      `
+    };
+
+    function openInfo(deviceKey, btn) {
+      btn.classList.add('animate');
+      setTimeout(() => btn.classList.remove('animate'), 400);
+
+      const newWindow = window.open('', '_blank', 'width=650,height=450,scrollbars=yes,resizable=yes');
+
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="uz">
+        <head>
+          <meta charset="UTF-8" />
+          <title>${deviceKey.toUpperCase()} haqida</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              padding: 25px;
+              line-height: 1.6;
+              background: #fff;
+              color: #222;
+              max-width: 600px;
+              margin: auto;
+            }
+            h1 {
+              color: #004aad;
+              margin-bottom: 15px;
+            }
+            p {
+              font-size: 1.1rem;
+            }
+            button {
+              background: #007bff;
+              color: white;
+              border: none;
+              padding: 10px 16px;
+              border-radius: 6px;
+              cursor: pointer;
+              font-weight: bold;
+              margin-top: 20px;
+              transition: background-color 0.3s ease;
+              user-select: none;
+            }
+            button:hover {
+              background: #0056b3;
+            }
+          </style>
+        </head>
+        <body>
+          ${deviceDetails[deviceKey]}
+          <button onclick="window.close()">Yopish</button>
+        </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
+  </script>
+
+</body>
+</html>
