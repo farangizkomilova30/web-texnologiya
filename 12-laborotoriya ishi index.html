@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Orqa fon rangini saqlash</title>
+</head>
+<body id="bg">
+
+<h2>JavaScript HTML DOM</h2>
+<p>Orqa fon rangini o'zgartirish va saqlash:</p>
+
+<p id="p1">Hello World!</p>
+<p id="p2" style="color: blue; font-family: Arial;">Hello World!</p>
+
+<label for="color">Orqa fon rangi:</label>
+<input type="color" id="color" value="#ffffff">
+
+<br><br>
+<button id="btn">Rangni o'zgartir</button>
+<button id="btnclear">Tozalash</button>
+
+<script>
+    // Sahifa yuklanganda saqlangan rangni tiklash
+    window.onload = function() {
+        const savedColor = localStorage.getItem("bgColor");
+
+        if (savedColor) {
+            document.getElementById('bg').style.backgroundColor = savedColor;
+            document.getElementById('color').value = savedColor;
+        }
+    };
+    // Rangni o'zgartirish va saqlash
+    document.getElementById('btn').addEventListener('click', function() {
+        const color = document.getElementById('color').value;
+
+        document.getElementById('bg').style.backgroundColor = color;
+        localStorage.setItem("bgColor", color);
+    });
+    // Tozalash — standart oq rangga qaytarish
+    document.getElementById('btnclear').addEventListener('click', function() {
+        localStorage.removeItem("bgColor");
+
+        document.getElementById('bg').style.backgroundColor = "white";
+        document.getElementById('color').value = "#ffffff";
+    });
+</script>
+
+</body>
+</html>
