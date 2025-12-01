@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Animatsiyali UI</title>
+
+    <!-- Ikonkalar uchun -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background: #0f0f0f;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        /* ================= NEON BUTTON ================= */
+        .neon-btn {
+            padding: 16px 40px;
+            font-size: 22px;
+            border: 2px solid #00f0ff;
+            border-radius: 12px;
+            color: #00f0ff;
+            background: transparent;
+            cursor: pointer;
+            transition: 0.4s ease;
+            text-shadow: 0 0 10px #00f0ff;
+            box-shadow: 0 0 20px #00f0ff inset;
+        }
+
+        .neon-btn:hover {
+            color: #000;
+            background: #00f0ff;
+            box-shadow: 0 0 25px #00f0ff, 0 0 40px #00f0ff;
+            transform: translateY(-4px);
+        }
+
+        .neon-btn:active {
+            transform: scale(0.95);
+        }
+
+
+        /* ================= RASM BLUR → CLEAR ANIMASIYA ================= */
+        .fx-img {
+            width: 350px;
+            border-radius: 14px;
+            filter: blur(4px) brightness(70%);
+            transform: scale(0.95);
+            transition: 0.6s ease;
+        }
+
+        .fx-img:hover {
+            filter: blur(0) brightness(100%);
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(0,255,255,0.4);
+        }
+
+
+        /* ================= IKO'NKAGA AYLANISH + PULS ================= */
+        .spin-icon {
+            font-size: 50px;
+            color: #ff2e9a;
+            margin-top: 20px;
+            cursor: pointer;
+            animation: pulse 1.6s infinite;
+            transition: 0.4s ease;
+        }
+
+        .spin-icon:hover {
+            color: #ff66b5;
+            transform: rotate(360deg) scale(1.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+
+        /* ================= LED LINE ANIMASIYA ================= */
+        .led-line {
+            width: 80%;
+            height: 6px;
+            border-radius: 10px;
+            margin: 50px auto;
+            background: linear-gradient(90deg, #ff0099, #00e5ff, #00ff66);
+            background-size: 300% 100%;
+            animation: ledMove 3.5s infinite linear;
+        }
+
+        @keyframes ledMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 300% 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Tugma Animatsiyasi</h2>
+    <button class="neon-btn">Bosish</button>
+
+    <h2>Rasm Animatsiyasi</h2>
+    <img src="https://picsum.photos/450" class="fx-img">
+
+    <h2>Ikonka Aylanish</h2>
+    <i class="fa-solid fa-star spin-icon"></i>
+
+    <h2>LED Chiziq Animatsiyasi</h2>
+    <div class="led-line"></div>
+
+</body>
+</html>
