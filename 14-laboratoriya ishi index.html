@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Badiiy kitoblar kutubxonasi</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h2 { text-align: center; }
+        input, button { padding: 8px; margin: 5px 0; width: 100%; }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        .box { border: 1px solid #ddd; padding: 15px; }
+    </style>
+</head>
+<body>
+
+<h2>📖 Badiiy kitoblar kutubxonasi</h2>
+
+<div class="container">
+
+    <!-- Kitob qo‘shish -->
+    <div class="box">
+        <h3>➕ Yangi kitob qo‘shish</h3>
+        <input id="name" placeholder="Kitob nomi">
+        <input id="author" placeholder="Muallif">
+        <input id="genre" placeholder="Janr">
+        <input id="description" placeholder="Tavsif">
+        <button id="addBook">Qo‘shish</button>
+    </div>
+
+    <!-- Jadval -->
+    <div class="box">
+        <input id="myInput" placeholder="Qidirish...">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Kitob nomi</th>
+                    <th>Muallif</th>
+                    <th>Janr</th>
+                    <th>Tavsif</th>
+                </tr>
+            </thead>
+            <tbody id="myTable"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function () {
+
+    // Boshlang‘ich badiiy kitoblar
+    let defaultBooks = [
+         { name: "O‘tkan kunlar", author: "Abdulla Qodiriy", genre: "Roman", description: "Tarixiy muhabbat romani." },
+        { name: "Mehrobdan chayon", author: "Abdulla Qodiriy", genre: "Roman", description: "Xiyonat va siyosat haqida." },
+        { name: "Kecha va kunduz", author: "Cho‘lpon", genre: "Roman", description: "Ijtimoiy hayot tasviri." },
+        { name: "Shum bola", author: "G‘afur G‘ulom", genre: "Qissa", description: "Sho‘x bola sarguzashtlari." },
+        { name: "Ikki eshik orasi", author: "O‘tkir Hoshimov", genre: "Roman", description: "Inson taqdiri haqida." },
+
+        { name: "Dunyoning ishlari", author: "O‘tkir Hoshimov", genre: "Qissa", description: "Hayotiy hikoyalar." },
+        { name: "Ulug‘bek xazinasi", author: "Odil Yoqubov", genre: "Roman", description: "Tarixiy asar." },
+        { name: "Yulduzli tunlar", author: "Pirimqul Qodirov", genre: "Roman", description: "Bobur hayoti." },
+        { name: "Boburnoma", author: "Zahiriddin Muhammad Bobur", genre: "Memuar", description: "Tarixiy xotiralar." },
+        { name: "Alpomish", author: "Xalq og‘zaki ijodi", genre: "Doston", description: "Qahramonlik dostoni." },
+
+        { name: "Alkimyogar", author: "Paulo Coelho", genre: "Falsafiy roman", description: "Orzular sari yo‘l." },
+        { name: "1984", author: "George Orwell", genre: "Antiutopiya", description: "Nazorat jamiyati." },
+        { name: "Hayvonlar xo‘jaligi", author: "George Orwell", genre: "Satira", description: "Siyosiy ramziy asar." },
+        { name: "Urush va tinchlik", author: "Lev Tolstoy", genre: "Roman", description: "Tarixiy epik asar." },
+        { name: "Anna Karenina", author: "Lev Tolstoy", genre: "Roman", description: "Muhabbat va jamiyat." },
+
+        { name: "Jinoyat va jazo", author: "Fyodor Dostoyevskiy", genre: "Roman", description: "Psixologik drama." },
+        { name: "Aka-uka Karamazovlar", author: "Dostoyevskiy", genre: "Roman", description: "Axloqiy muammolar." },
+        { name: "Qariya va dengiz", author: "Ernest Hemingway", genre: "Qissa", description: "Iroda va sabr." },
+        { name: "Chol va dengiz", author: "Ernest Hemingway", genre: "Qissa", description: "Inson va tabiat." },
+        { name: "Don Kixot", author: "Migel de Servantes", genre: "Roman", description: "Satirik asar." },
+    ];
+
+    // Agar localStorage bo‘sh bo‘lsa, default kitoblarni joylaymiz
+    let books = JSON.parse(localStorage.getItem("books"));
+    if (!books) {
+        books = defaultBooks;
+        localStorage.setItem("books", JSON.stringify(books));
+    }
+
+    function renderTable() {
+        let tr = "";
+        $.each(books, function (i, book) {
+            tr += `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${book.name}</td>
+                    <td>${book.author}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.description}</td>
+                </tr>
+            `;
+        });
+        $("#myTable").html(tr);
+    }
+
+    renderTable();
+
+    // Kitob qo‘shish
+    $("#addBook").click(function () {
+        let name = $("#name").val().trim();
+        let author = $("#author").val().trim();
+        let genre = $("#genre").val().trim();
+        let description = $("#description").val().trim();
+
+        if (!name || !author || !genre) {
+            alert("Iltimos, barcha maydonlarni to‘ldiring!");
+            return;
+        }
+
+        books.push({ name, author, genre, description });
+        localStorage.setItem("books", JSON.stringify(books));
+
+        $("#name, #author, #genre, #description").val("");
+        renderTable();
+    });
+
+    // Qidiruv
+    $("#myInput").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>
