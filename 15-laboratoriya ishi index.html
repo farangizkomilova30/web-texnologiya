@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  // Qidiruv (filter)
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+  // Yangi ma'lumot qo‘shish
+  $("#addBtn").click(function() {
+    let name = $("#name").val().trim();
+    let surname = $("#surname").val().trim();
+    let email = $("#email").val().trim();
+
+    if(name === "" || surname === "" || email === ""){
+      alert("Iltimos, barcha maydonlarni to‘ldiring!");
+      return;
+    }
+
+    let newRow = `
+      <tr>
+        <td>${name}</td>
+        <td>${surname}</td>
+        <td>${email}</td>
+      </tr>
+    `;
+
+    $("#myTable").append(newRow);
+
+    // inputlarni tozalash
+    $("#name").val("");
+    $("#surname").val("");
+    $("#email").val("");
+  });
+
+});
+</script>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+input {
+  padding: 6px;
+  margin: 4px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Filtrlash mumkin bo‘lgan jadval</h2>
+
+<p>Yangi foydalanuvchi qo‘shish:</p>
+
+<input id="name" type="text" placeholder="Ism">
+<input id="surname" type="text" placeholder="Familiya">
+<input id="email" type="email" placeholder="Email">
+<button id="addBtn">Qo‘shish</button>
+
+<br><br>
+
+<p>Jadvaldan qidirish:</p>
+<input id="myInput" type="text" placeholder="Search..">
+
+<br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ism</th>
+      <th>Familiya</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="myTable">
+    <tr>
+      <td>Farangiz</td>
+      <td>Komilova</td>
+      <td>farangizkomilova@gmail.com</td>
+    </tr>
+    <tr>
+      <td>Dilnoza</td>
+      <td>Yodgorova</td>
+      <td>dilnoza.yodgorova@example.com</td>
+    </tr>
+    <tr>
+      <td>Nilufar</td>
+      <td>Karimova</td>
+      <td>nilufar.karimova@example.com</td>
+    </tr>
+    <tr>
+      <td>Sardor</td>
+      <td>Axmedov</td>
+      <td>sardor.axmedov@example.com</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</body>
+</html>
