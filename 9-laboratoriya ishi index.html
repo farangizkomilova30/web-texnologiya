@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Laboratoriya Ishi - Farangiz</title>
+
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            min-height: 100vh;
+            gap: 40px; 
+            margin: 0;
+            background-color: #f0f2f5; 
+        }
+        .form-container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 320px; 
+        }
+        h2 { text-align: center; }
+
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 6px; 
+            border: 1px solid #ddd;
+        }
+
+        .captcha-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            margin: 10px 0;
+            font-weight: bold;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .error-msg {
+            color: red;
+            display: none;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Parol" required>
+
+        <div id="loginCaptcha" class="captcha-box"></div>
+        <p id="loginError" class="error-msg">Captcha xato!</p>
+
+        <input type="text" id="loginInput" placeholder="Captcha kiriting" required>
+        <button type="submit">Kirish</button>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Registratsiya</h2>
+    <form id="regForm">
+        <input type="text" placeholder="Ism" required>
+        <input type="email" placeholder="Email" required>
+
+        <div id="regCaptcha" class="captcha-box"></div>
+        <p id="regError" class="error-msg">Captcha xato!</p>
+
+        <input type="text" id="regInput" placeholder="Captcha kiriting" required>
+        <button type="submit">Ro'yxatdan o'tish</button>
+    </form>
+</div>
+
+<script>
+const studentName = "Farangiz";
+
+let currentLoginValue = "";
+let currentRegValue = "";
+
+// Random string
+function generateRandomStr(length) {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
+    let res = "";
+    for (let i = 0; i < length; i++) {
+        res += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return res;
+}
+
+// Style random
+function styleCaptcha(el) {
+    const hue = Math.floor(Math.random() * 360);
+
+    el.style.backgroundColor = `hsl(${hue}, 40%, 90%)`;
+    el.style.color = `hsl(${hue}, 70%, 30%)`;
+    el.style.letterSpacing = Math.random() * 5 + "px";
+    el.style.transform = `rotate(${Math.random()*6-3}deg)`;
+}
+
+// Refresh login captcha
+function refreshLogin() {
+    const rand = generateRandomStr(5);
+    currentLoginValue = `${studentName}-${rand}`;
+
+    const el = document.getElementById("loginCaptcha");
+    el.innerText = currentLoginValue;
+
+    styleCaptcha(el);
+
+    document.getElementById("loginInput").value = "";
+    document.getElementById("loginError").style.display = "none";
+}
+
+// Refresh register captcha
+function refreshReg() {
+    const rand = generateRandomStr(5);
+    currentRegValue = `${studentName}-${rand}`;
+
+    const el = document.getElementById("regCaptcha");
+    el.innerText = currentRegValue;
+
+    styleCaptcha(el);
+
+    document.getElementById("regInput").value = "";
+    document.getElementById("regError").style.display = "none";
+}
+
+// Click refresh
+document.getElementById("loginCaptcha").onclick = refreshLogin;
+document.getElementById("regCaptcha").onclick = refreshReg;
+
+// Check captcha
+function checkCaptcha(input, real) {
+    return input === real;
+}
+
+// Login submit
+document.getElementById("loginForm").onsubmit = function(e) {
+    e.preventDefault();
+
+    const val = document.getElementById("loginInput").value;
+
+    if (val === currentLoginValue) {
+        alert("Login muvaffaqiyatli!");
+    } else {
+        document.getElementById("loginError").style.display = "block";
+        alert("Captcha xato!");
+    }
+
+    refreshLogin(); // har safar yangilanadi
+};
+
+// Register submit
+document.getElementById("regForm").onsubmit = function(e) {
+    e.preventDefault();
+
+    const val = document.getElementById("regInput").value;
+
+    if (val === currentRegValue) {
+        alert("Registratsiya muvaffaqiyatli!");
+    } else {
+        document.getElementById("regError").style.display = "block";
+        alert("Captcha xato!");
+    }
+
+    refreshReg(); // har safar yangilanadi
+};
+
+// Initial load
+window.onload = function() {
+    refreshLogin();
+    refreshReg();
+};
+</script>
+
+</body>
+</html>
