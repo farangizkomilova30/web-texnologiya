@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21-topshiriq: Fayl yuklash (HTML/JS)</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        color: #333;
+        margin-top: 0;
+        font-weight: 700;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .folder-info {
+        background: #eef2ff;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 0.95em;
+        margin-bottom: 25px;
+        color: #1a3b8c;
+    }
+
+    input[type="file"] {
+        display: block;
+        margin: 20px 0;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="file"]:hover {
+        border-color: #667eea;
+    }
+
+    button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background: #5466c3;
+        transform: translateY(-2px);
+    }
+
+    .stats {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid #ddd;
+        font-size: 0.9em;
+        color: #555;
+        text-align: left;
+    }
+
+    #fileList {
+        margin-top: 10px;
+        font-size: 0.85em;
+        color: #444;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Fayl yuklash moduli</h2>
+    
+    <div class="folder-info">
+        Saqlash joyi (simulyatsiya): <br>
+        <strong>uploads-Komilova_Farangiz/</strong>
+    </div>
+
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Serverga yuklash</button>
+
+    <div class="stats">
+        <strong>Statistika:</strong><br>
+        Papkada jami: <span id="count">0</span> ta fayl mavjud.
+        <div id="fileList"></div>
+    </div>
+</div>
+
+<script>
+    let uploadedFiles = [];
+
+    function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        const countSpan = document.getElementById('count');
+        const fileListDiv = document.getElementById('fileList');
+
+        if (fileInput.files.length === 0) {
+            alert("Iltimos, avval fayl tanlang!");
+            return;
+        }
+
+        const file = fileInput.files[0];
+
+        if (file.size > 2 * 1024 * 1024) {
+            alert("Fayl juda katta! Maksimal hajm: 2MB");
+            return;
+        }
+
+        const fileName = file.name;
+        const uploadTime = new Date().toLocaleTimeString();
+        
+        uploadedFiles.push(`${fileName} (${uploadTime})`);
+
+        countSpan.innerText = uploadedFiles.length;
+        fileListDiv.innerHTML = "<strong>Yuklanganlar:</strong><br>" + 
+                                uploadedFiles.map(name => "📄 " + name).join("<br>");
+
+        fileInput.value = "";
+        alert("Fayl muvaffaqiyatli 'yuklandi'!");
+    }
+</script>
+
+</body>
+</html>
