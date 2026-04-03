@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatsiya va Dark Mode</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* GLOBAL ANIMATION OFF */
+        body.no-anim * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-dark {
+            background: black;
+            color: white;
+        }
+
+        .btn-anim {
+            background: #00c9a7;
+            color: white;
+        }
+
+        .box {
+            width: 80px;
+            height: 80px;
+            background: yellow;
+            margin: 20px auto;
+            border-radius: 10px;
+            animation: move 2s infinite alternate;
+        }
+
+        /* Animatsiya */
+        .animate {
+            animation: move 2s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translateY(0); }
+            to { transform: translateY(50px); }
+        }
+
+        /* DARK MODE */
+        body.dark {
+            background: #121212;
+            color: #eee;
+        }
+
+        body.dark .container {
+            background: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>⚙️ Sozlamalar</h1>
+
+    <button class="btn-dark" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <button class="btn-anim" onclick="toggleAnimation()">🎬 Animatsiyani yoqish/o‘chirish</button>
+    <button class="btn-anim" onclick="toggleAllAnimations()">🛑 Barcha animatsiyalarni o‘chirish</button>
+
+    <div id="box" class="box"></div>
+</div>
+
+<script>
+    const box = document.getElementById("box");
+
+    // COOKIE FUNKSIYALARI
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i=0;i < ca.length;i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length);
+        }
+        return null;
+    }
+
+    // DARK MODE
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+        let isDark = document.body.classList.contains("dark");
+        setCookie("darkMode", isDark, 7);
+    }
+
+    function loadDarkMode() {
+        if(getCookie("darkMode") === "true"){
+            document.body.classList.add("dark");
+        }
+    }
+
+    // BOX ANIMATION
+    function toggleAnimation() {
+        box.classList.toggle("animate");
+        let isActive = box.classList.contains("animate");
+        sessionStorage.setItem("animation", isActive);
+    }
+
+    function loadAnimation() {
+        if(sessionStorage.getItem("animation") === "true"){
+            box.classList.add("animate");
+        }
+    }
+
+    // BARCHA ANIMATSIYALARNI O‘CHIRISH
+    function toggleAllAnimations() {
+        document.body.classList.toggle("no-anim");
+        let state = document.body.classList.contains("no-anim");
+        sessionStorage.setItem("noAnim", state);
+    }
+
+    function loadAllAnimations() {
+        if(sessionStorage.getItem("noAnim") === "true"){
+            document.body.classList.add("no-anim");
+        }
+    }
+
+    // LOAD HOLATLAR
+    loadDarkMode();
+    loadAnimation();
+    loadAllAnimations();
+</script>
+
+</body>
+</html>
