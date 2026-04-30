@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel CRUD Amaliyoti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Foydalanuvchilar Ro'yxati</h2>
+            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Yangi qo'shish</a>
+        </div>
+
+        <!-- Ma'lumotlar jadvali -->
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="p-3 border">ID</th>
+                    <th class="p-3 border">Ism</th>
+                    <th class="p-3 border">Email</th>
+                    <th class="p-3 border text-center">Amallar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3 border">1</td>
+                    <td class="p-3 border">Ali Valiyev</td>
+                    <td class="p-3 border">ali@example.com</td>
+                    <td class="p-3 border text-center">
+                        <button class="text-yellow-600 hover:underline mr-2">Tahrirlash</button>
+                        <button class="text-red-600 hover:underline">O'chirish</button>
+                    </td>
+                </tr>
+                <!-- Laravelda bu qism @foreach sikli orqali chiqariladi -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Ma'lumot qo'shish formasi (Pastki qismda) -->
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
+        <h2 class="text-xl font-bold mb-4">Yangi foydalanuvchi qo'shish</h2>
+        <form action="#" method="POST">
+            <!-- Laravelda xavfsizlik uchun @csrf qo'shilishi shart -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Ism-sharif</label>
+                    <input type="text" name="name" class="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Email manzili</label>
+                    <input type="email" name="email" class="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition">Saqlash</button>
+        </form>
+    </div>
+
+</body>
+</html>
