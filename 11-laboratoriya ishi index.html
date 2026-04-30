@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | WordPress Loyihasi</title>
+    <!-- Google Fonts ishlatamiz -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
+
+        /* Navigatsiya */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #6c63ff; }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: #6c63ff; }
+
+        /* Hero Bo'limi (Asosiy qism) */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(135deg, #6c63ff 0%, #3f3d56 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 25px; opacity: 0.9; }
+        .btn {
+            padding: 12px 30px;
+            background: #ff6584;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #ff4d6d; transform: translateY(-3px); }
+
+        /* Xizmatlar Bo'limi */
+        .services { padding: 80px 10%; text-align: center; }
+        .services h2 { margin-bottom: 40px; font-size: 2.5rem; }
+        .card-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1;
+            min-width: 250px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card i { font-size: 40px; color: #6c63ff; margin-bottom: 15px; display: block; }
+
+        /* Footer */
+        footer { background: #333; color: white; text-align: center; padding: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WP_Dev</div>
+        <ul class="nav-links">
+            <li><a href="#">Asosiy</a></li>
+            <li><a href="#">Loyihalar</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Aloqa</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Sifatli Veb-saytlar Yarating</h1>
+        <p>WordPress va zamonaviy texnologiyalar bilan biznesingizni rivojlantiring.</p>
+        <a href="#" class="btn">Boshlash</a>
+    </section>
+
+    <section class="services">
+        <h2>Bizning Xizmatlar</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Veb Dizayn</h3>
+                <p>Zamonaviy va ko'zga yoqimli dizaynlar yaratish.</p>
+            </div>
+            <div class="card">
+                <h3>SEO Xizmati</h3>
+                <p>Saytingizni Google qidiruv tizimida yuqori o'rinlarga ko'tarish.</p>
+            </div>
+            <div class="card">
+                <h3>WP Sozlash</h3>
+                <p>Tayyor WordPress saytlarni xavfsiz va tezkor qilish.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Web Texnologiya Fani | Amaliy ish</p>
+    </footer>
+
+</body>
+</html>
