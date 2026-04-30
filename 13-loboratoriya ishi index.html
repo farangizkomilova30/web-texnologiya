@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>REST API Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 5px solid blue; }
+        #btn { padding: 10px 20px; cursor: pointer; background: blue; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>REST API Ma'lumot olish</h2>
+    <button id="btn">Yuklash</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "Yuklanmoqda...";
+
+            // Fetch API orqali so'rov
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => {
+                    if (!response.ok) throw new Error("Serverdan javob kelmadi");
+                    return response.json();
+                })
+                .then(data => {
+                    resultDiv.innerHTML = ""; // Tozalash
+                    data.slice(0, 5).forEach(user => {
+                        const div = document.createElement('div');
+                        div.className = 'card';
+                        div.innerHTML = `<strong>${user.name}</strong><br>Email: ${user.email}`;
+                        resultDiv.appendChild(div);
+                    });
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = "<p style='color:red'>Xato: " + error.message + "</p>";
+                    console.error("Xatolik tafsiloti:", error);
+                });
+        });
+    </script>
+</body>
+</html>
