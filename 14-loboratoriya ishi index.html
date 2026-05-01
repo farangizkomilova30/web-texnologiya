@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Demo</title>
+
+  <link rel="manifest" id="manifestPlaceholder">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: white;
+    }
+
+    .card {
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #2E7D32;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>PWA Demo</h1>
+    <p>Oddiy Progressive Web App (bitta HTML)</p>
+    <button onclick="alert('PWA ishlayapti!')">Bos</button>
+  </div>
+
+  <script>
+    // Manifest yaratish
+    const manifest = {
+      name: "PWA Demo",
+      short_name: "PWA",
+      start_url: ".",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#4CAF50"
+    };
+
+    const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    document.getElementById("manifestPlaceholder").setAttribute("href", url);
+
+    // Service Worker kodi
+    const swCode = `
+      const CACHE_NAME = "pwa-cache-v1";
+      const urlsToCache = ["./"];
+
+      self.addEventListener("install", event => {
+        event.waitUntil(
+          caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+        );
+      });
+
+      self.addEventListener("fetch", event => {
+        event.respondWith(
+          caches.match(event.request).then(response => response || fetch(event.request))
+        );
+      });
+    `;
+
+    const swBlob = new Blob([swCode], { type: "application/javascript" });
+    const swUrl = URL.createObjectURL(swBlob);
+
+    // Service Worker ulash
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(swUrl)
+        .then(() => console.log("Service Worker o‘rnatildi"))
+        .catch(err => console.log("Xatolik:", err));
+    }
+  </script>
+
+</body>
+</html>
+```
