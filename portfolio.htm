@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komilova Farangiz Portfolio</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(-45deg, #141e30, #243b55, #0f2027, #2c5364);
+            background-size: 400% 400%;
+            animation: bgAnimation 12s ease infinite;
+            color: white;
+            min-height: 100vh;
+        }
+
+        @keyframes bgAnimation {
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+
+        header{
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1{
+            font-size: 55px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.7);
+        }
+
+        header h2{
+            color: gold;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        header p{
+            font-size: 22px;
+        }
+
+        .container{
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .title{
+            text-align: center;
+            margin: 30px 0;
+            font-size: 38px;
+            color: gold;
+            text-shadow: 0 0 10px rgba(255,215,0,0.7);
+        }
+
+        .labs{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 25px;
+        }
+
+        .card{
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            transition: 0.4s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card:hover{
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+
+        .card h3{
+            color: gold;
+            margin-bottom: 12px;
+            font-size: 26px;
+        }
+
+        .card p{
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .btn{
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 18px;
+            background: linear-gradient(45deg, gold, orange);
+            color: black;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            background: white;
+            color: #1e3c72;
+        }
+
+        footer{
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: rgba(0,0,0,0.25);
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Komilova Farangiz</h1>
+        <h2>Yo'nalish: KIDT</h2>
+        <p>Guruh: 234</p>
+    </header>
+
+    <div class="container">
+
+        <h2 class="title">Laboratoriyalarim</h2>
+
+        <div class="labs">
+
+           <div class="card">
+        <h3>1-Laboratoriya</h3>
+        <p>1-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>2-Laboratoriya</h3>
+        <p>2-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>3-Laboratoriya</h3>
+        <p>3-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>4-Laboratoriya</h3>
+        <p>4-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>5-Laboratoriya</h3>
+        <p>5-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>6-Laboratoriya</h3>
+        <p>6-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>7-Laboratoriya</h3>
+        <p>7-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>8-Laboratoriya</h3>
+        <p>8-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>9-Laboratoriya</h3>
+        <p>9-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>10-Laboratoriya</h3>
+        <p>10-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>11-Laboratoriya</h3>
+        <p>11-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>12-Laboratoriya</h3>
+        <p>12-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>13-Laboratoriya</h3>
+        <p>13-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>14-Laboratoriya</h3>
+        <p>14-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+    <div class="card">
+        <h3>15-Laboratoriya</h3>
+        <p>15-laboratoriya ishi</p>
+        <a href="https://github.com/farangizkomilova30/web-texnologiya" class="btn" target="_blank">Ko'rish</a>
+    </div>
+
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Komilova Farangiz | Portfolio
+    </footer>
+
+</body>
+</html>
